@@ -1,10 +1,10 @@
 import '../App.css';
 import carrito from '../assets/carrito.png';
 
-function CardWidget() {
+function CartWidget() {
     return (
         <img src={carrito} alt="carrito" />
         );
     }
 
-export default CardWidget
+export default CartWidget
