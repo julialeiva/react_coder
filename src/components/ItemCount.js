@@ -1,40 +1,17 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-const ItemCount = ({initial = 1, initialstock = 5, onAdd}) => {
+const ItemCount = ({initial, initialStock, onAdd}) => {
 
   const [contador, setContador] = useState(initial)
-  const [stock, setStock] = useState(initialstock)
+  const [stock, setStock] = useState(initialStock)
  
-  const sumar = () => {
-    setContador(contador + 1);
-    setStock(stock - 1);
-    avisarStock();
-   }
-
-  const restar = () => {
-    if(contador > 0){
-      setContador(contador - 1);
-      setStock(stock + 1);      
-    }
-    else
-    {
-      setContador(0);
-    }
-  }
-
+  const sumar = () => contador < stock && setContador(contador + 1)
+  const restar = () => contador > initial && setContador(contador - 1)
+ 
   const reset = () =>{
     setContador(initial);
-    setStock(initialstock);
-  }
-
-  const avisarStock = () => {
-    if(stock > 0){  
-      
-    }else{
-      setStock(0);
-      setContador(contador);
-    }
+    setStock(initialStock);
   }
   
   function onAdd(){
