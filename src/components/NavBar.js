@@ -28,7 +28,7 @@ function NavBar() {
         </ul>
     </header> 
   );
-}
+};
 
 const styles = {
   titulo: {
@@ -39,7 +39,7 @@ const styles = {
   link: {
     textDecoration: "none",
   }
-  }
+};
 
 export default NavBar;
 

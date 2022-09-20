@@ -7,8 +7,8 @@ import { useEffect, useState } from 'react';
 
 function ItemListContainer (props){
 
-    const [listProducts, setListProducts] = useState([])
-    const [loading, setLoading] = useState(true)
+    const [listProducts, setListProducts] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         setLoading(true)
@@ -17,7 +17,8 @@ function ItemListContainer (props){
                 setLoading(false)
                 setListProducts(res)
             })  
-    },[])
+    },[]);
+
     return(
         <div>
             <h2>{props.greeting}</h2>
@@ -31,6 +32,6 @@ function ItemListContainer (props){
             
         </div>
     )
-}
+};
 
 export default ItemListContainer

@@ -10,7 +10,8 @@ const Item = ({products}) => {
         </div>
 
      )
-}
+};
+
 const styles = {
     items: {
       display: "flex",
@@ -23,7 +24,7 @@ const styles = {
       height: "200px",
       alignItems: "center",
     },
-    }
+};
 
 export {Item}
 
