@@ -3,6 +3,5 @@ export const customFetch = (products) => {
         setTimeout(() => {
             resolve(products)
         }, 2000)
-        resolve(products)
     })
 }
