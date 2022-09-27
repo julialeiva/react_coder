@@ -1,31 +1,29 @@
-import '../App.css';
+import React from 'react';
 import CartWidget from './CartWidget';
+import { Link } from "react-router-dom";
+import { Nav } from './Nav';
 
-function NavBar() {
+const NavBar = () => {
+  const categories = [
+    { id: 0, title: "electronics", route: "/category/electronics" },
+    { id: 1, title: "jewelery", route: "/category/jewelery" },
+    { id: 2, title: "men's clothing", route: "/category/men's clothing" },
+    { id: 3, title: "women's clothing", route: "/category/women's clothing" },
+  ];
+
   return (
     <header>
         <div  style={styles.titulo}  >
-          <h1>TuTablero</h1>
-          <CartWidget />
+          <h1>Ecommerce</h1>
+          <Link to="/cart">
+            <CartWidget />
+          </Link>
         </div>
         <nav>
-          <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">Logo</a>
-            <a href="#" data-target="mobile-demo" className="sidenav-trigger"><i className="material-icons">menu</i></a>
-            <ul className="right hide-on-med-and-down">
-              <li><a href="sass.html" style={styles.link}>Inicio</a></li>
-              <li><a href="badges.html" style={styles.link}>Análisis de Datos</a></li>
-              <li><a href="collapsible.html" style={styles.link}>Productos</a></li>
-              <li><a href="mobile.html" style={styles.link}>Contacto</a></li>
-            </ul>
+          <div>
+            <Nav style={styles.link} categories={categories} />
           </div>
         </nav>
-        <ul className="sidenav" id="mobile-demo">
-          <li><a href="sass.html" style={styles.link}>Inicio</a></li>
-          <li><a href="badges.html" style={styles.link}>Análisis de Datos</a></li>
-          <li><a href="collapsible.html" style={styles.link}>Productos</a></li>
-          <li><a href="mobile.html" style={styles.link}>Contacto</a></li>
-        </ul>
     </header> 
   );
 };
@@ -38,7 +36,10 @@ const styles = {
   },
   link: {
     textDecoration: "none",
-  }
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  },
 };
 
 export default NavBar;

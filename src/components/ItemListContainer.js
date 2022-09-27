@@ -1,37 +1,46 @@
 import '../App.css';
-import ItemCount from './ItemCount';
 import { ItemList } from './ItemList';
-import { products } from '../assets/products';
-import { customFetch } from '../utils/customFetch';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from "react-router-dom";
+import { API } from "../assets/constants";
 
 function ItemListContainer (props){
 
-    const [listProducts, setListProducts] = useState([]);
+    const { id } = useParams();
+    const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(false);
 
     useEffect(() => {
-        setLoading(true)
-        customFetch(products)
-            .then(res => {
-                setLoading(false)
-                setListProducts(res)
-            })  
-    },[]);
+        const url = id ? `${API.CATEGORY}${id}` : API.LIST;
+        const getItems = async () => {
+            try {
+              const respuesta = await fetch(url);
+              const data = await respuesta.json();
+              setProduct(data);
+            } catch (error) {
+                console.error(error);
+                setError(true);
+            } finally {
+              setLoading(false);
+            }
+          };
+          getItems();
+        }, [id]);
 
     return(
         <div>
             <h2>{props.greeting}</h2>
             {
-            loading ?
+            loading ? (
                 <spinner></spinner>
-                :
-                <ItemList listProducts={listProducts}/>
-            }
-            <ItemCount initial={1} initialStock={10} onAdd={() => {}}/>
-            
+                ) : error ? (
+                    <h1>Ocurrio un error</h1>
+                  ) : (
+                    <ItemList product={product} />
+                  )}
         </div>
-    )
+    );
 };
 
 export default ItemListContainer

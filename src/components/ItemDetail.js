@@ -1,15 +1,21 @@
+import React from "react";
+import ItemCount from "./ItemCount";
 
-const ItemDetail = ({ producto }) => {
-
+function ItemDetail({ product }) {
+    const onAdd = (count) => {
+    console.log({count});
+  };
+  
   return (
     <div style={styles.infoContainer}>
-      <img style={styles.img} src={producto.image} alt={producto.title} />
+      <img style={styles.img} src={product.image} alt={product.title} />
       <div style={styles.infoTextContainer}>
         <div style={styles.infoText}>
-          <h1>{producto.title}</h1>
-          <span>${producto.price}</span>
-          <p>{producto.description}</p>
+          <h1>{product.title}</h1>
+          <span>${product.price}</span>
+          <p>{product.description}</p>
         </div>
+        <ItemCount initial={1} stock={5} onAdd={onAdd} />
       </div>
     </div>
   );
