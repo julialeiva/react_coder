@@ -22,7 +22,7 @@ export const ItemDetailContainer = (props) => {
             setError(true);
         } finally {
             setLoading(false)
-        }
+        };
         };
         getItem();
     }, [id]);

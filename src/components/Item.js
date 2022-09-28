@@ -9,12 +9,11 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 const Item = ({ product }) => {
     return (
         <div>
-            <Card sx={{ maxWidth: 345 }} style={styles.container} />
-            <CardActionArea>
+            <Card sx={{ maxWidth: 345 }} style={styles.container}/>
+            <CardActionArea style={styles.container}>
               <CardMedia
                 component="img"
-                height="140"
-                width="140"
+                style={styles.img}
                 image={product.image}
                 alt={product.title}
               />
@@ -32,7 +31,7 @@ const Item = ({ product }) => {
                 </Typography>
               </CardContent>
             </CardActionArea>
-            <CardActions>
+            <CardActions style={styles.verdetalles}>
               <Link to={`/product/${product.id}`}>
                 <Button size="small" color="primary">
                   Ver Detalles
@@ -46,18 +45,30 @@ const Item = ({ product }) => {
 
 const styles = {
   container: {
+    display: "flex",
     width: window.innerHeight > 900 ? "50%" : "90%",
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    margin: 20,
-    backgroundColor: "rgba(249, 220, 92, 0.3)",
+    marginTop: "40px",
+    marginBotton: "10px",
   },
   title: {
     textOverflow: "ellipsis",
     overflow: "hidden",
     height: 100,
   },
+  img: {
+    width: "120px",
+    height: "150px",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  verdetalles: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+  }
 };
 
 export {Item}

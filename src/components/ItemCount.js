@@ -19,7 +19,7 @@ const ItemCount = ({initial, stock, onAdd}) => {
   const agregar = () => {
     setCount(initial)
     onAdd(count)
-  }
+  };
 
   return (
      <div>

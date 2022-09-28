@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import ItemCount from "./ItemCount";
+import { Link } from "react-router-dom";
 
 function ItemDetail({ product }) {
-    const onAdd = (count) => {
-    console.log({count});
+
+  const [compraFinalizada, setCompraFinalizada] = useState(false);
+
+  const onAdd = (count) => {
+  console.log({count});
+  setCompraFinalizada(true);
   };
   
   return (
@@ -15,7 +20,12 @@ function ItemDetail({ product }) {
           <span>${product.price}</span>
           <p>{product.description}</p>
         </div>
-        <ItemCount initial={1} stock={5} onAdd={onAdd} />
+            
+        {compraFinalizada
+          ? <Link to="/cart">
+            <button>Finalizar compra</button>
+            </Link>
+          : <ItemCount initial={1} stock={5} onAdd={onAdd} />}
       </div>
     </div>
   );
@@ -41,7 +51,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-around"
-  }
+  },
 };
 
 export default ItemDetail
