@@ -32,7 +32,7 @@ Puedes instalarlo clonando el repositorio
 
 
 
- ![image] (https://github.com/julialeiva/react_coder/blob/main/src/assets/demo.gif)
+![image](https://github.com/julialeiva/react_coder/blob/main/src/assets/demo.gif)
 
 
 
