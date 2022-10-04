@@ -27,6 +27,15 @@ Puedes instalarlo clonando el repositorio
 `$ git clone url`
 
 
+
+## ¿Cómo navegar?
+
+
+
+ ![image] (https://github.com/julialeiva/react_coder/blob/main/src/assets/demo.gif)
+
+
+
  
 ## Lenguajes
 
