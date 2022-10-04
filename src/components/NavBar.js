@@ -14,7 +14,7 @@ const NavBar = () => {
   return (
     <header>
         <div  style={styles.titulo}  >
-          <h1>Ecommerce</h1>
+          <h1>E-commerce MJL</h1>
           <Link to="/cart">
             <CartWidget />
           </Link>
