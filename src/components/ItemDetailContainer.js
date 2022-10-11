@@ -1,42 +1,33 @@
 import React, { useEffect, useState } from 'react'
 import ItemDetail from './ItemDetail';
 import { useParams } from "react-router-dom";
-import { API } from "../assets/constants";
+import { db } from "../firebase/firebase";
+import { doc, getDoc, collection } from "firebase/firestore";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export const ItemDetailContainer = (props) => {
 
-    const [product, setProduct] = useState({});
+    const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(false);
     const { id } = useParams();
 
     useEffect(() => {
-        const url = `${API.PRODUCTO}${id}`;
-        const getItem = async () => {
-        try {
-            const respuesta = await fetch(url);
-            const data = await respuesta.json();
-            setProduct(data);
-        } catch (error){
-            console.error(error);
-            setError(true);
-        } finally {
-            setLoading(false)
-        };
-        };
-        getItem();
+        const productsCollection = collection(db, 'productos');
+        const refDoc = doc(productsCollection, id);
+        getDoc(refDoc).then(result => {
+            setProduct({
+                id: result.id,
+                ...result.data(),
+            })
+        })
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
     }, [id]);
 
     return (
         <div>
         <h2>{props.greeting}</h2>
-        {loading ? (
-            <spinner></spinner>
-            ) : error ? (
-                <h1>Ocurrio un error</h1>
-              ) : (
-                <ItemDetail product={product} />
-              )}    
+        {loading ? <CircularProgress color="success" /> : <ItemDetail product={product} />}
         </div>
     );
 };

@@ -39,8 +39,7 @@ const Item = ({ product }) => {
               </Link>
             </CardActions>
         </div>
-
-     )
+     );
 };
 
 const styles = {

@@ -8,19 +8,26 @@ const CartProvider = ({ children }) => {
 
     const [cart, setCart] = useState([]);
     const [quantity, setQuantity] = useState(0);
+    const [total, setTotal] = useState(0);
+
 
     const getQuantity = () => {
         let qty = 0;
         cart.forEach(product => qty += product.qty);
         setQuantity(qty);
-    }
+    };
+
+    const getTotal = () => {
+        let t = 0;
+        cart.forEach(product => t += product.qty * product.price);
+        setTotal(t);
+    };
 
     useEffect(() => {
         getQuantity();
+        getTotal();
         // eslint-disable-next-line
-    }, [cart])
-
-    console.log(cart)
+    }, [cart]);
 
     const addProduct = (product) => {
         if (isInCart(product.id)) {
@@ -32,24 +39,24 @@ const CartProvider = ({ children }) => {
         } else {
             setCart([...cart, product]);
         };
-    }
+    };
 
-    const removeProduct = (id) => setCart(cart.filter(product => product.id !== id));
-    
+    const removeProduct = (id) => {
+        setCart(cart.filter(product => product.id !== id));
+    };
+  
     const isInCart = (id) => cart.find(product => product.id === id) ? true : false;
 
     const clear = () => {
         setCart([]);
-    };
-
-    const totalPrice = () => {
-        return cart.reduce((prev, act) => prev + act.qty * act.qty, 0);
+        setQuantity(0);
+        setTotal(0);
     };
 
     const totalProducts = () => cart.reduce((acumulador, productoActual) => acumulador + productoActual.qty, 0);
 
     return (
-        <Provider value={{ addProduct, removeProduct, clear, isInCart, totalPrice, totalProducts, quantity, cart}}>
+        <Provider value={{ addProduct, removeProduct, clear, isInCart, total, totalProducts, quantity, cart}}>
             {children}
         </Provider>
     );

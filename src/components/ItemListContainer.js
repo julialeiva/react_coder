@@ -1,45 +1,43 @@
 import { ItemList } from './ItemList';
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
-import { API } from "../assets/constants";
+import { db } from "../firebase/firebase";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { CircularProgress } from "@mui/material";
 
 function ItemListContainer (props){
 
-  const { id } = useParams();
+  const { categoryId } = useParams();
   const [product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
 
-    useEffect(() => {
-        const url = id ? `${API.CATEGORY}${id}` : API.LIST;
-        const getItems = async () => {
-            try {
-              const respuesta = await fetch(url);
-              const data = await respuesta.json();
-              setProduct(data);
-            } catch (error) {
-                console.error(error);
-                setError(true);
-            } finally {
-              setLoading(false);
-            }
-          };
-          getItems();
-        }, [id]);
+  useEffect(() => {
 
-        return(
-          <div>
-              <h2>{props.greeting}</h2>
-              {
-              loading ? (
-                  <spinner></spinner>
-                  ) : error ? (
-                      <h1>Ocurrio un error</h1>
-                    ) : (
-                      <ItemList product={product} />
-                    )}
-          </div>
-      );
-  };
+    const q = categoryId
+        ? query(collection(db, 'productos'), where('category', '==', categoryId))
+        : collection(db, 'productos');
+        
+    getDocs(q)
+        .then(result => {
+            const lista = result.docs.map(doc => {
+                return {
+                    id: doc.id,
+                    ...doc.data(),
+                }
+            })
+            setProduct(lista);
+        })
+        .catch(err => console.log(err))
+        .finally(() => setLoading(false))
+
+}, [categoryId]);
+
+      return(
+        <div>
+            <h2>{props.greeting}</h2>
+            {loading ? <CircularProgress color="success" /> : <ItemList product={product} />}    
+        </div>
+    );
+};
 
 export default ItemListContainer

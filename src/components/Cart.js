@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Cart = () => {
 
-  const { cart, totalPrice } = useCartContext();
+  const { cart, total } = useCartContext();
   
   if (cart.length === 0) {
     return (
@@ -18,11 +18,8 @@ const Cart = () => {
 
   return (
     <>
-      {
-        cart.map(product => <ItemCart key={product.id} product={product} />)
-
-      }
-      <p>{totalPrice}</p>
+      {cart.map(product => <ItemCart key={product.id} product={product} />)      }
+      <h2>Total a abonar ${total}</h2>
     </>
   );
 };
