@@ -44,19 +44,20 @@ const CartProvider = ({ children }) => {
     const removeProduct = (id) => {
         setCart(cart.filter(product => product.id !== id));
     };
-  
+
     const isInCart = (id) => cart.find(product => product.id === id) ? true : false;
 
     const clear = () => {
         setCart([]);
         setQuantity(0);
         setTotal(0);
+        totalProducts(0);
     };
 
     const totalProducts = () => cart.reduce((acumulador, productoActual) => acumulador + productoActual.qty, 0);
 
     return (
-        <Provider value={{ addProduct, removeProduct, clear, isInCart, total, totalProducts, quantity, cart}}>
+        <Provider value={{ addProduct, removeProduct, clear, isInCart, total, totalProducts, quantity, cart }}>
             {children}
         </Provider>
     );

@@ -4,8 +4,6 @@
 
 MJL es un e-commerce realizado como proyecto en el curso de React JS de CoderHouse. Se ha desarrollado para aprender acerca de React JS y poner en práctica los conocimientos.
 
-Actualmente se encuentra en proceso de desarrollo, sin estar finalizado.
-
  
 
 ## Acerca de mi
@@ -27,15 +25,6 @@ Puedes instalarlo clonando el repositorio
 `$ git clone url`
 
 
-
-## ¿Cómo navegar?
-
-
-
-![image](https://github.com/julialeiva/react_coder/blob/main/src/assets/demo.gif)
-
-
-
  
 ## Lenguajes
 
@@ -49,7 +38,7 @@ El proyecto combina lo visto en los cursos de Desarrollo Web y JavaScript, por l
 
  
 
-A pesar de que instalé varias librerías, finalmente me he decidido a utilizar Material UI.
+Como librerías utilicé Material UI para dar formato a algunos de los elementos del proyecto y Bootstrap.
 
  
 

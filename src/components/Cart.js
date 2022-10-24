@@ -2,33 +2,29 @@ import React from 'react'
 import { useCartContext } from '../CartContext';
 import ItemCart from './itemCart';
 import { Link } from "react-router-dom";
+import { Button, Grid } from "@mui/material";
 
 const Cart = () => {
 
   const { cart, total, clear } = useCartContext();
 
-  // const actualizarStock = (producto) =>{
-  //   const updateStock = doc(db, "productos", producto.id);
-  //   updateDoc(updateStock,{stock:(producto.product.stock - producto.product.qty)});
-  // };
-
-  
   if (cart.length === 0) {
     return (
-      <>
-        <p>No hay elementos en el carrito</p>
-        <Link to="/">Ir por productos</Link>
-      </>
+      <Grid container direction="column" justifyContent="center" alignItems="center" rowSpacing={1} marginTop="5px">
+        <Grid item><h4>Su carrito está vacío</h4></Grid>
+        <Grid item><Link to="/"><Button variant="contained">Ir por productos</Button></Link></Grid>
+      </Grid>
     );
   };
 
   return (
-    <>
-      {cart.map(product => <ItemCart key={product.id} product={product} />)      }
-      <h2>Total a abonar ${total}</h2>
-      <button onClick={clear}>Vaciar Carrito</button>
-      <Link to="/form"><button>Finalizar Compra</button></Link>
-    </>
+    <Grid container direction="column" justifyContent="center" alignItems="center" rowSpacing={1} marginTop="5px">
+      <Grid item>{cart.map(product => <ItemCart key={product.id} product={product} />)}</Grid>
+      <Grid item><h4>Total a abonar ${total}</h4></Grid>
+      <Grid item><Button variant="contained" onClick={clear}>Vaciar Carrito</Button></Grid>
+      <Grid item><Link to="/form"><Button variant="contained">Finalizar Compra</Button></Link></Grid>
+      <Grid item><Link to="/"><Button variant="contained">Seguir comprando</Button></Link></Grid>
+    </Grid>
   );
 };
 

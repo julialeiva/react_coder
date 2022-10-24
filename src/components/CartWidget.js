@@ -5,7 +5,7 @@ import carrito from '../assets/carrito.png';
 
 const CartWidget = () => {
 
-    const {totalProducts} = useCartContext();
+    const { totalProducts } = useCartContext();
 
     return (
         <>

@@ -20,14 +20,14 @@ export const ItemDetailContainer = (props) => {
                 ...result.data(),
             })
         })
-        .catch(err => console.log(err))
-        .finally(() => setLoading(false))
+            .catch(err => console.log(err))
+            .finally(() => setLoading(false))
     }, [id]);
 
     return (
         <div>
-        <h2>{props.greeting}</h2>
-        {loading ? <CircularProgress color="success" /> : <ItemDetail product={product} />}
+            <h2>{props.greeting}</h2>
+            {loading ? <CircularProgress color="success" /> : <ItemDetail product={product} />}
         </div>
     );
 };

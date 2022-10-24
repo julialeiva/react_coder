@@ -13,18 +13,18 @@ const NavBar = () => {
 
   return (
     <header>
-        <div  style={styles.titulo}  >
-          <h1>E-commerce MJL</h1>
-          <Link to="/cart">
-            <CartWidget />
-          </Link>
+      <div style={styles.titulo}  >
+        <h1>E-commerce MJL</h1>
+        <Link to="/cart">
+          <CartWidget />
+        </Link>
+      </div>
+      <nav>
+        <div>
+          <Nav categories={categories} />
         </div>
-        <nav>
-          <div>
-            <Nav style={styles.link} categories={categories} />
-          </div>
-        </nav>
-    </header> 
+      </nav>
+    </header>
   );
 };
 
@@ -33,6 +33,9 @@ const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
+    margin: "5%",
+    marginTop: "1%",
+    marginBottom: "1%",
   },
   link: {
     textDecoration: "none",
@@ -44,4 +47,3 @@ const styles = {
 
 export default NavBar;
 
- 

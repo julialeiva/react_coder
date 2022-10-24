@@ -13,12 +13,14 @@ export const Nav = ({ categories }) => {
 
 const styles = {
     nav: {
-        padding: 10,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        backgroundColor: "#1976d2",
     },
     links: {
-        padding: 10,
+        textDecoration: "none",
+        padding: "2%",
+        margin: "0px",
     },
 };

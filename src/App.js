@@ -14,18 +14,18 @@ function App() {
     <>
       <BrowserRouter>
         <CartProvider>
-        <NavBar />
-        <Routes>
-          <Route path='/' element={<ItemListContainer greeting="Bienvenidos" />}/>
-          <Route path='/category/:categoryId' element={<ItemListContainer greeting="Bienvenidos" />}/>
-          <Route path='/product/:id' element={<ItemDetailContainer />}/>
-          <Route path='/cart' element={<Cart />}/>
-          <Route path='/form' element={<Form />}/>
-        </Routes>
+          <NavBar />
+          <Routes>
+            <Route path='/' element={<ItemListContainer greeting="Bienvenidos" />} />
+            <Route path='/category/:categoryId' element={<ItemListContainer greeting="Nuestros productos" />} />
+            <Route path='/product/:id' element={<ItemDetailContainer />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/form' element={<Form />} />
+          </Routes>
         </CartProvider>
       </BrowserRouter>
     </>
-);
+  );
 };
 
 export default App;

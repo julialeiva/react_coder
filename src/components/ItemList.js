@@ -1,18 +1,18 @@
 import React from 'react';
-import {Item} from "./Item";
+import { Item } from "./Item";
 
 export const ItemList = ({ product }) => {
-  return(
+  return (
     <div style={styles.container}>
       {product.map((product) =>
-          <Item key={product.id} product={product} />
+        <Item key={product.id} product={product} />
       )}
-    </div> 
+    </div>
   );
 };
 
 const styles = {
-  container:{
+  container: {
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
